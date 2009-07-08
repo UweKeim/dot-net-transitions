@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Reflection;
 
@@ -111,73 +110,84 @@ namespace Transitions
         /// </summary>
         private void snapshotProperties(object target)
         {
+			// We find all the properties that we know how to manage for 
+			// the target...
             IList<PropertyInfo> propertyInfos = getManagableProperties(target.GetType());
-        }
 
-        /// <summary>
-        /// Returns the set of managable properties for the type passed in.
-        /// </summary>
-        private IList<PropertyInfo> getManagableProperties(Type type)
-        {
-            // We may have the information cached...
-            if (m_mapManagableFields.ContainsKey(type) == true)
-            {
-                return m_mapManagableFields[type];
-            }
-
-            // The information isn't cached, so we work out which fields 
-            // are managable for the type passed in. To dop this, we iterate
-            // through the properties for the type and see which ones:
-            // - Are both getable and setable
-            // - Are of one of the types we know how to manage
-
-            IList<PropertyInfo> managableProperties = new List<PropertyInfo>();
-
-            // We get all the properties for the type and check to see if they match
-            // our constraints...
-            PropertyInfo[] propertyInfos = type.GetProperties();
-            foreach (PropertyInfo propertyInfo in propertyInfos)
-            {
-                // Is the property getable and setable?
-                if(propertyInfo.CanRead == false || propertyInfo.CanWrite == false)
-                {
-                    // The property is either read-only or write-only...
-                    continue;
-                }
-
-                // Is the property of a type we know how to manage?
-                Type propertyType = propertyInfo.PropertyType;
-                if (m_mapManagedTypes.ContainsKey(propertyType) == false)
-                {
-                    // We don't know how to manage this type...
-                    continue;
-                }
-
-                // We can manage this property, so we add it to the managable list
-                // for this type...
-                managableProperties.Add(propertyInfo);
-            }
-
-            // We store the list for this type...
-            m_mapManagableFields[type] = managableProperties;
-
-            return managableProperties;
-        }
-
-        /// <summary>
-        /// Registers a transition-type. We hold them in a map.
-        /// </summary>
-        private static void registerType(IManagedType transitionType)
-        {
-            Type type = transitionType.getManagedType();
-            m_mapManagedTypes[type] = transitionType;
+			// We take a snapshot of the property values...
+			foreach (PropertyInfo propertyInfo in propertyInfos)
+			{
+			}
         }
 
         #endregion
 
-        #region Private data
+		#region Private static functions
 
-        // A map of Type info to IManagedType objects. These are all the types that we
+		/// <summary>
+		/// Returns the set of managable properties for the type passed in.
+		/// </summary>
+		private static IList<PropertyInfo> getManagableProperties(Type type)
+		{
+			// We may have the information cached...
+			if (m_mapManagableFields.ContainsKey(type) == true)
+			{
+				return m_mapManagableFields[type];
+			}
+
+			// The information isn't cached, so we work out which fields 
+			// are managable for the type passed in. To dop this, we iterate
+			// through the properties for the type and see which ones:
+			// - Are both getable and setable
+			// - Are of one of the types we know how to manage
+
+			IList<PropertyInfo> managableProperties = new List<PropertyInfo>();
+
+			// We get all the properties for the type and check to see if they match
+			// our constraints...
+			PropertyInfo[] propertyInfos = type.GetProperties();
+			foreach (PropertyInfo propertyInfo in propertyInfos)
+			{
+				// Is the property getable and setable?
+				if (propertyInfo.CanRead == false || propertyInfo.CanWrite == false)
+				{
+					// The property is either read-only or write-only...
+					continue;
+				}
+
+				// Is the property of a type we know how to manage?
+				Type propertyType = propertyInfo.PropertyType;
+				if (m_mapManagedTypes.ContainsKey(propertyType) == false)
+				{
+					// We don't know how to manage this type...
+					continue;
+				}
+
+				// We can manage this property, so we add it to the managable list
+				// for this type...
+				managableProperties.Add(propertyInfo);
+			}
+
+			// We store the list for this type...
+			m_mapManagableFields[type] = managableProperties;
+
+			return managableProperties;
+		}
+
+		/// <summary>
+		/// Registers a transition-type. We hold them in a map.
+		/// </summary>
+		private static void registerType(IManagedType transitionType)
+		{
+			Type type = transitionType.getManagedType();
+			m_mapManagedTypes[type] = transitionType;
+		}
+
+		#endregion
+		
+		#region Private static data
+
+		// A map of Type info to IManagedType objects. These are all the types that we
         // know how to perform transactions on...
         private static IDictionary<Type, IManagedType> m_mapManagedTypes = new Dictionary<Type, IManagedType>();
 
