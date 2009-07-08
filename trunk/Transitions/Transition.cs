@@ -54,6 +54,30 @@ namespace Transitions
 
         #endregion
 
+        #region Public static methods
+
+        /// <summary>
+        /// Creates and immediately runs a transition on the property passed in.
+        /// </summary>
+        public static void run(object target, string strPropertyName, object destinationValue, ITransitionMethod transitionMethod)
+        {
+            Transition t = new Transition(transitionMethod);
+            t.add(target, strPropertyName, destinationValue);
+            t.go();
+        }
+
+        /// <summary>
+        /// Sets the property passed in to the initial value passed in, then creates and 
+        /// immediately runs a transition on it.
+        /// </summary>
+        public static void run(object target, string strPropertyName, object initialValue, object destinationValue, ITransitionMethod transitionMethod)
+        {
+            Utility.setValue(target, strPropertyName, initialValue);
+            run(target, strPropertyName, destinationValue, transitionMethod);
+        }
+
+        #endregion
+
         #region Public methods
 
         /// <summary>

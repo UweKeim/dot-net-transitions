@@ -5,7 +5,8 @@ using System.Text;
 namespace Transitions
 {
     /// <summary>
-    /// Manages transitions for strings. This is a sort-of comedy effect.
+    /// Manages transitions for strings. This doesn't make as much sense as transitions
+    /// on other types, but I like the way it looks!
     /// </summary>
     internal class ManagedType_String : IManagedType
     {

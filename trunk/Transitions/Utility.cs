@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Reflection;
 
 namespace Transitions
 {
@@ -9,6 +10,34 @@ namespace Transitions
 	/// </summary>
 	internal class Utility
 	{
+        /// <summary>
+        /// Returns the value of the property passed in.
+        /// </summary>
+        public static object getValue(object target, string strPropertyName)
+        {
+            Type targetType = target.GetType();
+            PropertyInfo propertyInfo = targetType.GetProperty(strPropertyName);
+            if (propertyInfo == null)
+            {
+                throw new Exception("Object: " + target.ToString() + " does not have the property: " + strPropertyName);
+            }
+            return propertyInfo.GetValue(target, null);
+        }
+
+        /// <summary>
+        /// Sets the value of the property passed in.
+        /// </summary>
+        public static void setValue(object target, string strPropertyName, object value)
+        {
+            Type targetType = target.GetType();
+            PropertyInfo propertyInfo = targetType.GetProperty(strPropertyName);
+            if (propertyInfo == null)
+            {
+                throw new Exception("Object: " + target.ToString() + " does not have the property: " + strPropertyName);
+            }
+            propertyInfo.SetValue(target, value, null);
+        }
+
 		/// <summary>
 		/// Returns a value between d1 and d2 for the percentage passed in.
 		/// </summary>
