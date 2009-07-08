@@ -29,13 +29,13 @@ namespace Transitions
 		}
 
 		/// <summary>
-		/// Checks if the two objects are the same int.
+		/// Returns the value between the start and end for the percentage passed in.
 		/// </summary>
-		public bool isSameValue(object o1, object o2)
+		public object getIntermediateValue(object start, object end, double dPercentage)
 		{
-			int i1 = (int)o1;
-			int i2 = (int)o2;
-			return (i1 == i2);
+			int iStart = (int)start;
+			int iEnd = (int)end;
+			return Utility.interpolate(iStart, iEnd, dPercentage);
 		}
 
 		#endregion
