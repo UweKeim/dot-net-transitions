@@ -44,6 +44,8 @@
     <Compile Include="IManagedType.cs" />
     <Compile Include="ManagedType_Color.cs" />
     <Compile Include="ManagedType_Double.cs" />
+    <Compile Include="ManagedType_Float.cs" />
+    <Compile Include="ManagedType_String.cs" />
     <Compile Include="Transition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ManagedType_Int.cs" />

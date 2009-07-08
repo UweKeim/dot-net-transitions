@@ -45,9 +45,11 @@ namespace Transitions
         /// </summary>
         static Transition()
         {
-			registerType(new ManagedType_Int());
+            registerType(new ManagedType_Int());
+            registerType(new ManagedType_Float());
 			registerType(new ManagedType_Double());
-			registerType(new ManagedType_Color());
+            registerType(new ManagedType_Color());
+            registerType(new ManagedType_String());
         }
 
         #endregion
@@ -82,6 +84,12 @@ namespace Transitions
 			{
 				throw new Exception("Transition does not handle properties of type: " + propertyType.ToString());
 			}
+
+            // We can only transition properties that are both getable and setable...
+            if (propertyInfo.CanRead == false || propertyInfo.CanWrite == false)
+            {
+                throw new Exception("Property is not both getable and setable: " + strPropertyName);
+            }
 
 			// We can manage this type, so we store the information for the
 			// transition of this property...

@@ -20,12 +20,20 @@ namespace Transitions
 			return dResult;
 		}
 
-		/// <summary>
-		/// Returns a value betweeen i1 and i2 for the percentage passed in.
-		/// </summary>
-		public static int interpolate(int i1, int i2, double dPercentage)
-		{
-			return (int)interpolate((double)i1, (double)i2, dPercentage);
-		}
-	}
+        /// <summary>
+        /// Returns a value betweeen i1 and i2 for the percentage passed in.
+        /// </summary>
+        public static int interpolate(int i1, int i2, double dPercentage)
+        {
+            return (int)interpolate((double)i1, (double)i2, dPercentage);
+        }
+    
+        /// <summary>
+        /// Returns a value betweeen f1 and f2 for the percentage passed in.
+        /// </summary>
+        public static float interpolate(float f1, float f2, double dPercentage)
+        {
+            return (float)interpolate((double)f1, (double)f2, dPercentage);
+        }
+    }
 }
