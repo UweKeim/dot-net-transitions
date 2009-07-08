@@ -11,7 +11,12 @@ namespace TestSample
             InitializeComponent();
         }
 
-		private void button1_Click(object sender, EventArgs e)
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            Transition.run(this, "Opacity", 0.0, 1.0, new TransitionMethod_Linear(1000));
+        }
+        
+        private void button1_Click(object sender, EventArgs e)
 		{
 			Left = -300;
 			Opacity = 0.0;
@@ -22,8 +27,9 @@ namespace TestSample
 			t.add(this, "Opacity", 1.0);
             t.add(label1, "Text", "A much longer piece of text");
 			t.go();
-
 		}
+
+
 
     }
 }
