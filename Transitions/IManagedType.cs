@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Reflection;
 
 namespace Transitions
 {
@@ -22,5 +23,11 @@ namespace Transitions
         /// needed for types that are objects.)
         /// </summary>
         object copy(object o);
+
+		/// <summary>
+		/// Returns true if o2 holds the the same value as o1, false otherwise.
+		/// </summary>
+		bool isSameValue(object o1, object o2);
+
     }
 }

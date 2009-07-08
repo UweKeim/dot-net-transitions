@@ -18,16 +18,16 @@ namespace TestSample
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            Transition t = new Transition(this, new TransitionMethod_Linear(500));
-            Width = 500;
-            Height = 100;
-            t.go();
-
-
-            Transition t2 = new Transition(this, new TransitionMethod_Linear(500));
-            Width = 500;
-            Height = 100;
-            t2.go();
         }
+
+		private void button1_Click(object sender, EventArgs e)
+		{
+
+			//Transition t = new Transition(new TransitionMethod_Linear(500));
+			//t.add(this, "Width", 500);
+			//t.add(this, "Height", 100);
+			//t.go();
+
+		}
     }
 }
