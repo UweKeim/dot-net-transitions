@@ -78,6 +78,9 @@ namespace Transitions
         /// </summary>
         public void go()
         {
+			// We find out which properties have been updated, and create
+			// objects to manage them...
+			findChangedProperties();
         }
 
         #endregion
@@ -89,6 +92,9 @@ namespace Transitions
         /// </summary>
         private void setupTransition(object[] targets, ITransitionMethod transitionMethod)
         {
+			m_Targets = targets;
+			m_TransitionMethod = transitionMethod;
+
             // When a transition is run we need to work out which properties
             // on the targets have been changed between the construction of the
             // transition and the go() method being called. The changes properties
@@ -115,12 +121,70 @@ namespace Transitions
             IList<PropertyInfo> propertyInfos = getManagableProperties(target.GetType());
 
 			// We take a snapshot of the property values...
+			m_mapPropertySnapshot.Clear();
 			foreach (PropertyInfo propertyInfo in propertyInfos)
 			{
+				// We get a copy of the property value...
+				object value = propertyInfo.GetValue(target, null);
+				Type propertyType = propertyInfo.PropertyType;
+				IManagedType managedType = m_mapManagedTypes[propertyType];
+				object copy = managedType.copy(value);
+
+				// And we store it...
+				PropertyKey key = new PropertyKey(target, propertyInfo);
+				m_mapPropertySnapshot[key] = copy;
 			}
         }
 
-        #endregion
+		/// <summary>
+		/// We find the set of properties that have been changed since we took the snapshot,
+		/// and create an object to manage each one.
+		/// </summary>
+		private void findChangedProperties()
+		{
+			// We look through the snapshotted properties and find their current values.
+			// We store info for any changed properties...
+			m_listTransitionedProperties.Clear();
+			foreach (KeyValuePair<PropertyKey, object> pair in m_mapPropertySnapshot)
+			{
+				PropertyKey key = pair.Key;
+				Type propertyType = key.propertyInfo.PropertyType;
+				IManagedType managedType = m_mapManagedTypes[propertyType];
+
+				// We find a copy of the current value of the property.
+				// Note: we take a copy as we want to store it as part of the 
+				//       transaction info, and we want to make sure that it is
+				//       not a reference to a value that might change.
+				object value = key.propertyInfo.GetValue(key.obj, null);
+				object currentValue = managedType.copy(value);
+
+				// We check if it has changed...
+				object originalValue = pair.Value;
+				if (managedType.isSameValue(currentValue, originalValue) == true)
+				{
+					// This property was not changed, so we do not need to transition it...
+					continue;
+				}
+
+				// The property value has been changed, so we need to manage a transition 
+				// for it. We:
+				// a. Reset the property to its initial state.
+				// b. Store the information about the property to use during the transition itself.
+
+				// a.
+				key.propertyInfo.SetValue(key.obj, originalValue, null);
+
+				// b.
+				TransitionedPropertyInfo info = new TransitionedPropertyInfo();
+				info.startValue = originalValue;
+				info.endValue = currentValue;
+				info.target = key.obj;
+				info.propertyInfo = key.propertyInfo;
+				m_listTransitionedProperties.Add(info);
+			}
+		}
+
+		#endregion
 
 		#region Private static functions
 
@@ -198,5 +262,39 @@ namespace Transitions
         private static IDictionary<Type, IList<PropertyInfo>> m_mapManagableFields = new Dictionary<Type, IList<PropertyInfo>>();
 
         #endregion
-    }
+
+		#region Private data
+
+		// The collection of target objects managed by this transition...
+		private object[] m_Targets = null;
+
+		// The transition method used by this transition...
+		private ITransitionMethod m_TransitionMethod = null;
+
+		// A class that can be used as a key to look up property values for an object.
+		private class PropertyKey
+		{
+			public PropertyKey(object o, PropertyInfo pi) { obj = o; propertyInfo = pi; }
+			public object obj;
+			public PropertyInfo propertyInfo;
+		}
+
+		// Holds a snapshot of property values for the target objects...
+		private IDictionary<PropertyKey, object> m_mapPropertySnapshot = new Dictionary<PropertyKey, object>();
+
+		// Holds information about one property on one taregt object that we are performing
+		// a transition on...
+		private class TransitionedPropertyInfo
+		{
+			public object startValue;
+			public object endValue;
+			public object target;
+			public PropertyInfo propertyInfo;
+		}
+
+		// The collection of properties that the current transition is animating...
+		private IList<TransitionedPropertyInfo> m_listTransitionedProperties = new List<TransitionedPropertyInfo>();
+
+		#endregion
+	}
 }
