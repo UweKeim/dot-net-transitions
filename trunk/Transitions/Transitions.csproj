@@ -49,6 +49,9 @@
     <Compile Include="Transition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ManagedType_Int.cs" />
+    <Compile Include="TransitionMethod_Acceleration.cs" />
+    <Compile Include="TransitionMethod_Deceleration.cs" />
+    <Compile Include="TransitionMethod_EaseInEaseOut.cs" />
     <Compile Include="TransitionMethod_Linear.cs" />
     <Compile Include="Utility.cs" />
   </ItemGroup>

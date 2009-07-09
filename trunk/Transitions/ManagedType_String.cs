@@ -60,10 +60,21 @@ namespace Transitions
                 }
 
                 // We interpolate them...
-                int iStart = Convert.ToInt32(cStart);
-                int iEnd = Convert.ToInt32(cEnd);
-                int iInterpolated = Utility.interpolate(iStart, iEnd, dPercentage);
-                char cInterpolated = Convert.ToChar(iInterpolated);
+				char cInterpolated;
+				if (cEnd == ' ')
+				{
+					// If the end character is a space we just show a space 
+					// regardless of interpolation. It looks better this way...
+					cInterpolated = ' ';
+				}
+				else
+				{
+					// The end character is not a space, so we interpolate...
+					int iStart = Convert.ToInt32(cStart);
+					int iEnd = Convert.ToInt32(cEnd);
+					int iInterpolated = Utility.interpolate(iStart, iEnd, dPercentage);
+					cInterpolated = Convert.ToChar(iInterpolated);
+				}
 
                 result[i] = cInterpolated;
             }
