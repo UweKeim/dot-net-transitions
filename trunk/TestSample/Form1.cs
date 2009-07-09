@@ -18,15 +18,28 @@ namespace TestSample
         
         private void button1_Click(object sender, EventArgs e)
 		{
-			Left = -300;
-			Opacity = 0.6;
+			//Left = -300;
+			//Opacity = 0.6;
             //label1.Text = "Hello";
 
-			Transition t = new Transition(new TransitionMethod_Deceleration(1000));
-			t.add(this, "Left", 0);
-			t.add(this, "Opacity", 1.0);
+			//Transition t = new Transition(new TransitionMethod_Linear(1000));
+			//t.add(this, "Left", 0);
+			//t.add(this, "Opacity", 1.0);
 			//t.add(label1, "Text", "A much longer piece of text");
-			t.go();
+			//t.run();
+
+            Top = 100;
+            Left = 100;
+
+            Transition t1 = new Transition(new TransitionMethod_EaseInEaseOut(2000));
+            t1.add(this, "Top", 500);
+            t1.add(this, "Left", 200);
+
+            Transition t2 = new Transition(new TransitionMethod_EaseInEaseOut(1000));
+            t2.add(this, "Top", 200);
+            t2.add(this, "Left", 600);
+
+            TransitionChain.run(t1, t2);
 
 		}
 
