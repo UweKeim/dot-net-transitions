@@ -260,7 +260,7 @@ namespace Transitions
 		private IList<TransitionedPropertyInfo> m_listTransitionedProperties = new List<TransitionedPropertyInfo>();
 
 		// The timer used to drive the transition...
-		private System.Timers.Timer m_Timer = new System.Timers.Timer(1);
+		private System.Timers.Timer m_Timer = new System.Timers.Timer(15);
 
 		// Helps us find the time interval from the time the transition starts to each timer tick...
 		private Stopwatch m_Stopwatch = new Stopwatch();
