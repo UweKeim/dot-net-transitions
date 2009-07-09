@@ -21,14 +21,14 @@ namespace Transitions
     /// a.      Transition t = new Transition(new TransitionMethod_Linear(500));
     /// b.      t.add(form1, "Width", 500);
     /// c.      t.add(form1, "BackColor", Color.Red);
-    /// d.      t.go();
+    /// d.      t.run();
     ///   
     /// Line a:         Creates a new transition. You specify the transition method.
     ///                 
     /// Lines b. and c: Set the destination values of the properties you are animating.
     /// 
     /// Line d:         Starts the transition.
-    ///  
+    /// 
     /// Transition methods
     /// ------------------
     /// TransitionMethod objects specify how the transition is made. Examples include
@@ -54,6 +54,22 @@ namespace Transitions
 
         #endregion
 
+        #region Events
+
+        /// <summary>
+        /// Args passed with the TransitionCompletedEvent.
+        /// </summary>
+        public class Args : EventArgs
+        {
+        }
+
+        /// <summary>
+        /// Event raised when the transition hass completed.
+        /// </summary>
+        public event EventHandler<Args> TransitionCompletedEvent;
+
+        #endregion
+
         #region Public static methods
 
         /// <summary>
@@ -63,7 +79,7 @@ namespace Transitions
         {
             Transition t = new Transition(transitionMethod);
             t.add(target, strPropertyName, destinationValue);
-            t.go();
+            t.run();
         }
 
         /// <summary>
@@ -115,14 +131,11 @@ namespace Transitions
                 throw new Exception("Property is not both getable and setable: " + strPropertyName);
             }
 
-			// We can manage this type, so we store the information for the
+            IManagedType managedType = m_mapManagedTypes[propertyType];
+            
+            // We can manage this type, so we store the information for the
 			// transition of this property...
-			object value = propertyInfo.GetValue(target, null);
-			IManagedType managedType = m_mapManagedTypes[propertyType];
-			object startValue = managedType.copy(value);
-
 			TransitionedPropertyInfo info = new TransitionedPropertyInfo();
-			info.startValue = startValue;
 			info.endValue = destinationValue;
 			info.target = target;
 			info.propertyInfo = propertyInfo;
@@ -134,8 +147,16 @@ namespace Transitions
         /// <summary>
         /// Starts the transition.
         /// </summary>
-        public void go()
+        public void run()
         {
+            // We find the current start values for the properties we 
+            // are animating...
+            foreach (TransitionedPropertyInfo info in m_listTransitionedProperties)
+            {
+                object value = info.propertyInfo.GetValue(info.target, null);
+                info.startValue = info.managedType.copy(value);
+            }
+
 			// We start a timer for the transition...
 			m_Timer.Elapsed += onTimerElapsed;
 			m_Timer.Enabled = true;
@@ -190,8 +211,13 @@ namespace Transitions
 			// Has the transition completed?
 			if (bCompleted == true)
 			{
+                // We stop the stopwatch and the timer...
+                m_Stopwatch.Stop();
 				m_Timer.Elapsed -= onTimerElapsed;
 				m_Timer = null;
+
+                // We raise an event to notify any observers that the transition has completed...
+                Utility.raiseEvent(TransitionCompletedEvent, this, new Args());
 			}
 			else
 			{
@@ -206,15 +232,22 @@ namespace Transitions
 		/// </summary>
 		private void setProperty(object sender, PropertyUpdateArgs args)
 		{
-			Control control = args.target as Control;
-			if (control != null && control.InvokeRequired)
-			{
-				control.BeginInvoke(new EventHandler<PropertyUpdateArgs>(setProperty), new object[] { sender, args });
-			}
-			else
-			{
-				args.propertyInfo.SetValue(args.target, args.value, null);
-			}
+            try
+            {
+                Control control = args.target as Control;
+                if (control != null && control.InvokeRequired)
+                {
+                    control.BeginInvoke(new EventHandler<PropertyUpdateArgs>(setProperty), new object[] { sender, args });
+                }
+                else
+                {
+                    args.propertyInfo.SetValue(args.target, args.value, null);
+                }
+            }
+            catch (Exception)
+            {
+                // We silently catch any exceptions.
+            }
 		}
 
 		#endregion
@@ -265,6 +298,7 @@ namespace Transitions
 		// Helps us find the time interval from the time the transition starts to each timer tick...
 		private Stopwatch m_Stopwatch = new Stopwatch();
 
+        // Event args used for the event we raise when updating a property...
 		private class PropertyUpdateArgs : EventArgs
 		{
 			public PropertyUpdateArgs(object t, PropertyInfo pi, object v)
