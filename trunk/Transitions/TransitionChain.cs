@@ -4,20 +4,8 @@ using System.Text;
 
 namespace Transitions
 {
-    public class TransitionChain
+    internal class TransitionChain
     {
-        #region Public static methods
-
-        /// <summary>
-        /// Creates a TransitionChain and runs it.
-        /// </summary>
-        public static void run(params Transition[] transitions)
-        {
-            TransitionChain chain = new TransitionChain(transitions);
-        }
-
-        #endregion
-
         #region Public methods
 
         public TransitionChain(params Transition[] transitions)

@@ -28,18 +28,23 @@ namespace TestSample
 			//t.add(label1, "Text", "A much longer piece of text");
 			//t.run();
 
-            Top = 100;
-            Left = 100;
+            Opacity = 0.5;
 
-            Transition t1 = new Transition(new TransitionMethod_EaseInEaseOut(2000));
-            t1.add(this, "Top", 500);
-            t1.add(this, "Left", 200);
+            Transition t1 = new Transition(new TransitionMethod_EaseInEaseOut(500));
+            t1.add(this, "Top", 100);
+            t1.add(this, "Left", 100);
 
-            Transition t2 = new Transition(new TransitionMethod_EaseInEaseOut(1000));
-            t2.add(this, "Top", 200);
-            t2.add(this, "Left", 600);
+            Transition t2 = new Transition(new TransitionMethod_EaseInEaseOut(1500));
+            t2.add(this, "Top", 500);
+            t2.add(this, "Left", 200);
+            t2.add(this, "Opacity", 0.75);
 
-            TransitionChain.run(t1, t2);
+            Transition t3 = new Transition(new TransitionMethod_EaseInEaseOut(1000));
+            t3.add(this, "Top", 200);
+            t3.add(this, "Left", 600);
+            t3.add(this, "Opacity", 1.0);
+
+            Transition.runChain(t1, t2, t3);
 
 		}
 
