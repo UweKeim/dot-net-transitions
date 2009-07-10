@@ -92,6 +92,14 @@ namespace Transitions
             run(target, strPropertyName, destinationValue, transitionMethod);
         }
 
+        /// <summary>
+        /// Creates a TransitionChain and runs it.
+        /// </summary>
+        public static void runChain(params Transition[] transitions)
+        {
+            TransitionChain chain = new TransitionChain(transitions);
+        }
+
         #endregion
 
         #region Public methods
