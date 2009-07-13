@@ -245,16 +245,25 @@ namespace Transitions
                 Control control = args.target as Control;
                 if (control != null && control.InvokeRequired)
                 {
-                    control.BeginInvoke(new EventHandler<PropertyUpdateArgs>(setProperty), new object[] { sender, args });
+                    // We need to invoke the method on the GUI thread.
+                    // Note: We change the property synchronously with Invoke rather than
+                    //       asynchronously with BeginInvoke as the transition can generate
+                    //       a large number of changes, and these can "pile up" and cause
+                    //       problems. It is better to slow the transition down to the speed
+                    //       at which it can realistically be rendered. (The transition will 
+                    //       not actually slow down, but the frame-rate may decrease.)
+                    control.Invoke(new EventHandler<PropertyUpdateArgs>(setProperty), new object[] { sender, args });
                 }
                 else
                 {
+                    // We are on the correct thread, so we update the property...
                     args.propertyInfo.SetValue(args.target, args.value, null);
                 }
             }
             catch (Exception)
             {
-                // We silently catch any exceptions.
+                // We silently catch any exceptions. These could be things like 
+                // bounds exceptions when setting properties.
             }
 		}
 

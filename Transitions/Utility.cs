@@ -67,6 +67,20 @@ namespace Transitions
         }
 
         /// <summary>
+        /// Converts a fraction representing linear time to a fraction representing
+        /// the distance traveled under an ease-in-ease-out transition.
+        /// </summary>
+        public static double convertLinearToEaseInEaseOut(double dElapsed)
+        {
+            // The distance traveled is made up of two parts: the initial acceleration,
+            // and then the subsequent deceleration...
+            double dFirstHalfTime = (dElapsed > 0.5) ? 0.5 : dElapsed;
+            double dSecondHalfTime = (dElapsed > 0.5) ? dElapsed - 0.5 : 0.0;
+            double dResult = 2 * dFirstHalfTime * dFirstHalfTime + 2 * dSecondHalfTime * (1.0 - dSecondHalfTime);
+            return dResult;
+        }
+
+        /// <summary>
         /// Fires the event passed in in a thread-safe way. 
         /// </summary><remarks>
         /// This method loops through the targets of the event and invokes each in turn. If the
