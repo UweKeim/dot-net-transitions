@@ -40,12 +40,7 @@ namespace Transitions
 		{
 			// We find the percentage time elapsed...
 			double dElapsed = iTime / m_dTransitionTime;
-
-			// The distance traveled is made up of two parts: the initial acceleration,
-			// and then the subsequent deceleration...
-			double dFirstHalfTime = (dElapsed > 0.5) ? 0.5 : dElapsed;
-			double dSecondHalfTime = (dElapsed > 0.5) ? dElapsed - 0.5 : 0.0;
-			dPercentage = 2 * dFirstHalfTime * dFirstHalfTime + 2 * dSecondHalfTime * (1.0 - dSecondHalfTime);
+            dPercentage = Utility.convertLinearToEaseInEaseOut(dElapsed);
 
 			if (dElapsed >= 1.0)
 			{

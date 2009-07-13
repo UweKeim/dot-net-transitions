@@ -29,35 +29,74 @@
         private void InitializeComponent()
         {
             this.button1 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.cmdCrossFadePictures = new System.Windows.Forms.Button();
+            this.cmdBounceMe = new System.Windows.Forms.Button();
+            this.cmdFlashMe = new System.Windows.Forms.Button();
+            this.pictureControl1 = new TestSample.PictureControl();
             this.SuspendLayout();
             // 
             // button1
             // 
+            this.button1.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.button1.Location = new System.Drawing.Point(12, 12);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(102, 40);
+            this.button1.Size = new System.Drawing.Size(119, 40);
             this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Text = "Bounce the screen";
+            this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // label1
+            // cmdCrossFadePictures
             // 
-            this.label1.Font = new System.Drawing.Font("Courier New", 28F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(12, 69);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(289, 188);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Hello";
+            this.cmdCrossFadePictures.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.cmdCrossFadePictures.Location = new System.Drawing.Point(15, 78);
+            this.cmdCrossFadePictures.Name = "cmdCrossFadePictures";
+            this.cmdCrossFadePictures.Size = new System.Drawing.Size(115, 48);
+            this.cmdCrossFadePictures.TabIndex = 3;
+            this.cmdCrossFadePictures.Text = "Cross-fade Pictures";
+            this.cmdCrossFadePictures.UseVisualStyleBackColor = false;
+            this.cmdCrossFadePictures.Click += new System.EventHandler(this.cmdCrossFadePictures_Click);
+            // 
+            // cmdBounceMe
+            // 
+            this.cmdBounceMe.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.cmdBounceMe.Location = new System.Drawing.Point(16, 207);
+            this.cmdBounceMe.Name = "cmdBounceMe";
+            this.cmdBounceMe.Size = new System.Drawing.Size(115, 47);
+            this.cmdBounceMe.TabIndex = 5;
+            this.cmdBounceMe.Text = "Bounce Me!";
+            this.cmdBounceMe.UseVisualStyleBackColor = false;
+            this.cmdBounceMe.Click += new System.EventHandler(this.cmdBounceMe_Click);
+            // 
+            // cmdFlashMe
+            // 
+            this.cmdFlashMe.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.cmdFlashMe.Location = new System.Drawing.Point(16, 143);
+            this.cmdFlashMe.Name = "cmdFlashMe";
+            this.cmdFlashMe.Size = new System.Drawing.Size(115, 47);
+            this.cmdFlashMe.TabIndex = 6;
+            this.cmdFlashMe.Text = "Flash Me!";
+            this.cmdFlashMe.UseVisualStyleBackColor = false;
+            this.cmdFlashMe.Click += new System.EventHandler(this.cmdFlashMe_Click);
+            // 
+            // pictureControl1
+            // 
+            this.pictureControl1.Image = global::TestSample.Properties.Resources.kitten;
+            this.pictureControl1.Location = new System.Drawing.Point(150, 12);
+            this.pictureControl1.Name = "pictureControl1";
+            this.pictureControl1.Size = new System.Drawing.Size(125, 108);
+            this.pictureControl1.TabIndex = 7;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.ClientSize = new System.Drawing.Size(292, 266);
-            this.Controls.Add(this.label1);
+            this.ClientSize = new System.Drawing.Size(289, 412);
+            this.Controls.Add(this.pictureControl1);
+            this.Controls.Add(this.cmdFlashMe);
+            this.Controls.Add(this.cmdBounceMe);
+            this.Controls.Add(this.cmdCrossFadePictures);
             this.Controls.Add(this.button1);
             this.Name = "Form1";
             this.Opacity = 0;
@@ -69,8 +108,11 @@
 
         #endregion
 
-		private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button cmdCrossFadePictures;
+        private System.Windows.Forms.Button cmdBounceMe;
+        private System.Windows.Forms.Button cmdFlashMe;
+        private PictureControl pictureControl1;
     }
 }
 
