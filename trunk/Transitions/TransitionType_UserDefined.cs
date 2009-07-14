@@ -16,9 +16,9 @@ namespace Transitions
     /// 50      100     Acceleration 
     /// 75      50      Deceleration
     /// 85      100     Acceleration
-    /// 91      25      Deceleration
+    /// 91      75      Deceleration
     /// 95      100     Acceleration
-    /// 98      10      Deceleration
+    /// 98      90      Deceleration
     /// 100     100     Acceleration
     /// 
     /// The time values are expressed as a percentage of the overall transition time. This 
@@ -30,9 +30,10 @@ namespace Transitions
     /// 
     /// The interpolation is one of the values from the InterpolationMethod enum.
     /// 
-    /// So the example above accelerates to the destination (as if under gravity) then
-    /// bounces back up to half the initial height, slowing down (as if against gravity)
-    /// before falling down again and bouncing to decreasing heights each time.
+    /// So the example above accelerates to the destination (as if under gravity) by
+    /// t=50%, then bounces back up to half the initial height by t=75%, slowing down 
+    /// (as if against gravity) before falling down again and bouncing to decreasing 
+    /// heights each time.
     /// 
     /// </summary>
     public class TransitionType_UserDefined : ITransitionType
