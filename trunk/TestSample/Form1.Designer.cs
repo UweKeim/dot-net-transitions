@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.button1 = new System.Windows.Forms.Button();
-            this.cmdCrossFadePictures = new System.Windows.Forms.Button();
             this.cmdBounceMe = new System.Windows.Forms.Button();
             this.cmdFlashMe = new System.Windows.Forms.Button();
-            this.pictureControl1 = new TestSample.PictureControl();
+            this.ctrlRipple = new TestSample.RippleControl();
+            this.cmdRipple = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button1
@@ -45,17 +45,6 @@
             this.button1.Text = "Bounce the screen";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // cmdCrossFadePictures
-            // 
-            this.cmdCrossFadePictures.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.cmdCrossFadePictures.Location = new System.Drawing.Point(15, 78);
-            this.cmdCrossFadePictures.Name = "cmdCrossFadePictures";
-            this.cmdCrossFadePictures.Size = new System.Drawing.Size(115, 48);
-            this.cmdCrossFadePictures.TabIndex = 3;
-            this.cmdCrossFadePictures.Text = "Cross-fade Pictures";
-            this.cmdCrossFadePictures.UseVisualStyleBackColor = false;
-            this.cmdCrossFadePictures.Click += new System.EventHandler(this.cmdCrossFadePictures_Click);
             // 
             // cmdBounceMe
             // 
@@ -79,13 +68,22 @@
             this.cmdFlashMe.UseVisualStyleBackColor = false;
             this.cmdFlashMe.Click += new System.EventHandler(this.cmdFlashMe_Click);
             // 
-            // pictureControl1
+            // ctrlRipple
             // 
-            this.pictureControl1.Image = global::TestSample.Properties.Resources.kitten;
-            this.pictureControl1.Location = new System.Drawing.Point(150, 12);
-            this.pictureControl1.Name = "pictureControl1";
-            this.pictureControl1.Size = new System.Drawing.Size(125, 108);
-            this.pictureControl1.TabIndex = 7;
+            this.ctrlRipple.Location = new System.Drawing.Point(158, 70);
+            this.ctrlRipple.Name = "ctrlRipple";
+            this.ctrlRipple.Size = new System.Drawing.Size(122, 103);
+            this.ctrlRipple.TabIndex = 8;
+            // 
+            // cmdRipple
+            // 
+            this.cmdRipple.Location = new System.Drawing.Point(12, 70);
+            this.cmdRipple.Name = "cmdRipple";
+            this.cmdRipple.Size = new System.Drawing.Size(119, 45);
+            this.cmdRipple.TabIndex = 9;
+            this.cmdRipple.Text = "Ripple";
+            this.cmdRipple.UseVisualStyleBackColor = true;
+            this.cmdRipple.Click += new System.EventHandler(this.cmdRipple_Click);
             // 
             // Form1
             // 
@@ -93,10 +91,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.ClientSize = new System.Drawing.Size(292, 447);
-            this.Controls.Add(this.pictureControl1);
+            this.Controls.Add(this.cmdRipple);
+            this.Controls.Add(this.ctrlRipple);
             this.Controls.Add(this.cmdFlashMe);
             this.Controls.Add(this.cmdBounceMe);
-            this.Controls.Add(this.cmdCrossFadePictures);
             this.Controls.Add(this.button1);
             this.Name = "Form1";
             this.Opacity = 0;
@@ -109,10 +107,10 @@
         #endregion
 
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button cmdCrossFadePictures;
         private System.Windows.Forms.Button cmdBounceMe;
         private System.Windows.Forms.Button cmdFlashMe;
-        private PictureControl pictureControl1;
+        private RippleControl ctrlRipple;
+        private System.Windows.Forms.Button cmdRipple;
     }
 }
 

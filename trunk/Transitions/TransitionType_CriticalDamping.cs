@@ -4,10 +4,11 @@ using System.Text;
 
 namespace Transitions
 {
-	/// <summary>
-	/// Manages transitions under constant acceleration from a standing start.
-	/// </summary>
-	public class TransitionMethod_Acceleration : ITransitionMethod
+    /// <summary>
+    /// This transition animates with an exponential decay. This has a damping effect
+    /// similar to the motion of a needle on an electomagnetically controlled dial.
+    /// </summary>
+	public class TransitionType_CriticalDamping : ITransitionType
 	{
 		#region Public methods
 
@@ -15,7 +16,7 @@ namespace Transitions
 		/// Constructor. You pass in the time that the transition 
 		/// will take (in milliseconds).
 		/// </summary>
-		public TransitionMethod_Acceleration(int iTransitionTime)
+		public TransitionType_CriticalDamping(int iTransitionTime)
 		{
 			if (iTransitionTime <= 0)
 			{
@@ -29,18 +30,13 @@ namespace Transitions
 		#region ITransitionMethod Members
 
 		/// <summary>
-		/// Works out the percentage completed given the time passed in.
-		/// This uses the formula:
-		///   s = ut + 1/2at^2
-		/// The initial velocity is 0, and the acceleration to get to 1.0
-		/// at t=1.0 is 2, so the formula just becomes:
-		///   s = t^2
 		/// </summary>
 		public void onTimer(int iTime, out double dPercentage, out bool bCompleted)
 		{
 			// We find the percentage time elapsed...
 			double dElapsed = iTime / m_dTransitionTime;
-			dPercentage = dElapsed * dElapsed;
+			dPercentage = (1.0 - Math.Exp(-1.0 * dElapsed * 5)) / 0.993262053;
+
 			if (dElapsed >= 1.0)
 			{
 				dPercentage = 1.0;

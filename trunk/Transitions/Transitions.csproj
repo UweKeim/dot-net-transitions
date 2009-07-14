@@ -40,7 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ITransitionMethod.cs" />
+    <Compile Include="ITransitionType.cs" />
     <Compile Include="IManagedType.cs" />
     <Compile Include="ManagedType_Color.cs" />
     <Compile Include="ManagedType_Double.cs" />
@@ -52,13 +52,13 @@
     <Compile Include="TransitionChain.cs" />
     <Compile Include="TransitionElement.cs" />
     <Compile Include="TransitionManager.cs" />
-    <Compile Include="TransitionMethod_Acceleration.cs" />
-    <Compile Include="TransitionMethod_Bounce.cs" />
-    <Compile Include="TransitionMethod_CriticalDamping.cs" />
-    <Compile Include="TransitionMethod_Deceleration.cs" />
-    <Compile Include="TransitionMethod_EaseInEaseOut.cs" />
-    <Compile Include="TransitionMethod_Linear.cs" />
-    <Compile Include="TransitionMethod_UserDefined.cs" />
+    <Compile Include="TransitionType_Acceleration.cs" />
+    <Compile Include="TransitionType_Bounce.cs" />
+    <Compile Include="TransitionType_CriticalDamping.cs" />
+    <Compile Include="TransitionType_Deceleration.cs" />
+    <Compile Include="TransitionType_EaseInEaseOut.cs" />
+    <Compile Include="TransitionType_Linear.cs" />
+    <Compile Include="TransitionType_UserDefined.cs" />
     <Compile Include="Utility.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

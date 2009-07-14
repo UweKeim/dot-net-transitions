@@ -5,10 +5,9 @@ using System.Text;
 namespace Transitions
 {
 	/// <summary>
-	/// Manages an ease-in-ease-out transition. This accelerates during the first 
-	/// half of the transition, and then decelerates during the second half.
+	/// Manages transitions under constant acceleration from a standing start.
 	/// </summary>
-	public class TransitionMethod_EaseInEaseOut : ITransitionMethod
+	public class TransitionType_Acceleration : ITransitionType
 	{
 		#region Public methods
 
@@ -16,7 +15,7 @@ namespace Transitions
 		/// Constructor. You pass in the time that the transition 
 		/// will take (in milliseconds).
 		/// </summary>
-		public TransitionMethod_EaseInEaseOut(int iTransitionTime)
+		public TransitionType_Acceleration(int iTransitionTime)
 		{
 			if (iTransitionTime <= 0)
 			{
@@ -33,15 +32,15 @@ namespace Transitions
 		/// Works out the percentage completed given the time passed in.
 		/// This uses the formula:
 		///   s = ut + 1/2at^2
-		/// We accelerate as at the rate needed (a=4) to get to 0.5 at t=0.5, and
-		/// then decelerate at the same rate to end up at 1.0 at t=1.0.
+		/// The initial velocity is 0, and the acceleration to get to 1.0
+		/// at t=1.0 is 2, so the formula just becomes:
+		///   s = t^2
 		/// </summary>
 		public void onTimer(int iTime, out double dPercentage, out bool bCompleted)
 		{
 			// We find the percentage time elapsed...
 			double dElapsed = iTime / m_dTransitionTime;
-            dPercentage = Utility.convertLinearToEaseInEaseOut(dElapsed);
-
+			dPercentage = dElapsed * dElapsed;
 			if (dElapsed >= 1.0)
 			{
 				dPercentage = 1.0;
