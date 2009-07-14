@@ -75,7 +75,7 @@ namespace Transitions
         /// <summary>
         /// Creates and immediately runs a transition on the property passed in.
         /// </summary>
-        public static void run(object target, string strPropertyName, object destinationValue, ITransitionMethod transitionMethod)
+        public static void run(object target, string strPropertyName, object destinationValue, ITransitionType transitionMethod)
         {
             Transition t = new Transition(transitionMethod);
             t.add(target, strPropertyName, destinationValue);
@@ -86,7 +86,7 @@ namespace Transitions
         /// Sets the property passed in to the initial value passed in, then creates and 
         /// immediately runs a transition on it.
         /// </summary>
-        public static void run(object target, string strPropertyName, object initialValue, object destinationValue, ITransitionMethod transitionMethod)
+        public static void run(object target, string strPropertyName, object initialValue, object destinationValue, ITransitionType transitionMethod)
         {
             Utility.setValue(target, strPropertyName, initialValue);
             run(target, strPropertyName, destinationValue, transitionMethod);
@@ -108,7 +108,7 @@ namespace Transitions
         /// Constructor. You pass in the object that holds the properties 
         /// that you are performing transitions on.
         /// </summary>
-        public Transition(ITransitionMethod transitionMethod)
+        public Transition(ITransitionType transitionMethod)
         {
 			m_TransitionMethod = transitionMethod;
         }
@@ -278,7 +278,7 @@ namespace Transitions
 		#region Private data
 
 		// The transition method used by this transition...
-		private ITransitionMethod m_TransitionMethod = null;
+		private ITransitionType m_TransitionMethod = null;
 
 		// Holds information about one property on one taregt object that we are performing
 		// a transition on...

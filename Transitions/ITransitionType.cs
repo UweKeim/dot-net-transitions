@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Transitions
 {
-    public interface ITransitionMethod
+    public interface ITransitionType
     {
 		/// <summary>
 		/// Called by the Transition framework when its timer ticks to pass in the
