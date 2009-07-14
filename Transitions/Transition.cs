@@ -165,14 +165,13 @@ namespace Transitions
                 info.startValue = info.managedType.copy(value);
             }
 
-			// We start a timer for the transition...
-			m_Timer.Elapsed += onTimerElapsed;
-			m_Timer.Enabled = true;
-		
 			// We start the stopwatch. We use this when the timer ticks to measure 
 			// how long the transition has been runnning for...
 			m_Stopwatch.Reset();
 			m_Stopwatch.Start();
+
+            // We register this transition with the transition manager...
+            TransitionManager.getInstance().register(this);
 		}
 
         #endregion
@@ -182,16 +181,8 @@ namespace Transitions
 		/// <summary>
 		/// Called when the transition timer ticks.
 		/// </summary>
-		private void onTimerElapsed(object sender, ElapsedEventArgs e)
+		internal void onTimer()
 		{
-			if (m_Timer == null)
-			{
-				return;
-			}
-
-			// We stop the timer, and restart it when the function has completed...
-			m_Timer.Enabled = false;
-
 			// When the timer ticks we:
 			// a. Find the elapsed time since the transition started.
 			// b. Work out the percentage movement for the properties we're managing.
@@ -221,15 +212,9 @@ namespace Transitions
 			{
                 // We stop the stopwatch and the timer...
                 m_Stopwatch.Stop();
-				m_Timer.Elapsed -= onTimerElapsed;
-				m_Timer = null;
 
                 // We raise an event to notify any observers that the transition has completed...
                 Utility.raiseEvent(TransitionCompletedEvent, this, new Args());
-			}
-			else
-			{
-				m_Timer.Enabled = true;
 			}
 		}
 
@@ -308,9 +293,6 @@ namespace Transitions
 
 		// The collection of properties that the current transition is animating...
 		private IList<TransitionedPropertyInfo> m_listTransitionedProperties = new List<TransitionedPropertyInfo>();
-
-		// The timer used to drive the transition...
-		private System.Timers.Timer m_Timer = new System.Timers.Timer(15);
 
 		// Helps us find the time interval from the time the transition starts to each timer tick...
 		private Stopwatch m_Stopwatch = new Stopwatch();
