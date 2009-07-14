@@ -51,6 +51,7 @@
     <Compile Include="ManagedType_Int.cs" />
     <Compile Include="TransitionChain.cs" />
     <Compile Include="TransitionElement.cs" />
+    <Compile Include="TransitionManager.cs" />
     <Compile Include="TransitionMethod_Acceleration.cs" />
     <Compile Include="TransitionMethod_Bounce.cs" />
     <Compile Include="TransitionMethod_CriticalDamping.cs" />
