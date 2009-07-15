@@ -31,8 +31,9 @@
             this.button1 = new System.Windows.Forms.Button();
             this.cmdBounceMe = new System.Windows.Forms.Button();
             this.cmdFlashMe = new System.Windows.Forms.Button();
-            this.ctrlRipple = new TestSample.RippleControl();
             this.cmdRipple = new System.Windows.Forms.Button();
+            this.ctrlRipple = new TestSample.RippleControl();
+            this.cmdDropAndBounce = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button1
@@ -68,13 +69,6 @@
             this.cmdFlashMe.UseVisualStyleBackColor = false;
             this.cmdFlashMe.Click += new System.EventHandler(this.cmdFlashMe_Click);
             // 
-            // ctrlRipple
-            // 
-            this.ctrlRipple.Location = new System.Drawing.Point(158, 70);
-            this.ctrlRipple.Name = "ctrlRipple";
-            this.ctrlRipple.Size = new System.Drawing.Size(122, 103);
-            this.ctrlRipple.TabIndex = 8;
-            // 
             // cmdRipple
             // 
             this.cmdRipple.Location = new System.Drawing.Point(12, 70);
@@ -85,12 +79,30 @@
             this.cmdRipple.UseVisualStyleBackColor = true;
             this.cmdRipple.Click += new System.EventHandler(this.cmdRipple_Click);
             // 
+            // ctrlRipple
+            // 
+            this.ctrlRipple.Location = new System.Drawing.Point(158, 70);
+            this.ctrlRipple.Name = "ctrlRipple";
+            this.ctrlRipple.Size = new System.Drawing.Size(122, 103);
+            this.ctrlRipple.TabIndex = 8;
+            // 
+            // cmdDropAndBounce
+            // 
+            this.cmdDropAndBounce.Location = new System.Drawing.Point(163, 213);
+            this.cmdDropAndBounce.Name = "cmdDropAndBounce";
+            this.cmdDropAndBounce.Size = new System.Drawing.Size(105, 40);
+            this.cmdDropAndBounce.TabIndex = 10;
+            this.cmdDropAndBounce.Text = "Drop and bounce";
+            this.cmdDropAndBounce.UseVisualStyleBackColor = true;
+            this.cmdDropAndBounce.Click += new System.EventHandler(this.cmdDropAndBounce_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.ClientSize = new System.Drawing.Size(292, 447);
+            this.Controls.Add(this.cmdDropAndBounce);
             this.Controls.Add(this.cmdRipple);
             this.Controls.Add(this.ctrlRipple);
             this.Controls.Add(this.cmdFlashMe);
@@ -111,6 +123,7 @@
         private System.Windows.Forms.Button cmdFlashMe;
         private RippleControl ctrlRipple;
         private System.Windows.Forms.Button cmdRipple;
+        private System.Windows.Forms.Button cmdDropAndBounce;
     }
 }
 
