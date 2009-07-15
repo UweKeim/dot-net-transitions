@@ -5,21 +5,18 @@ using System.Text;
 namespace Transitions
 {
     /// <summary>
-    /// This transition type 'bounces' the properties a specified number of times, ending
+    /// This transition type 'flashes' the properties a specified number of times, ending
     /// up by reverting them to their initial values. You specify the number of bounces and
     /// the length of each bounce. 
-    /// 
-    /// Although this transition is called 'bounce' - which implies movement - it is also 
-    /// good for operations like flashing the color of a control to highlight it.
     /// </summary>
-    public class TransitionType_Bounce : ITransitionType
+    public class TransitionType_Flash : ITransitionType
     {
         #region Public methods
 
         /// <summary>
         /// You specify the number of bounces
         /// </summary>
-        public TransitionType_Bounce(int iNumberOfBounces, int iBounceTime)
+        public TransitionType_Flash(int iNumberOfBounces, int iBounceTime)
         {
             m_dBounceTime = iBounceTime / 2.0; // We store the number of half-bounces
             m_dTransitionTime = iBounceTime * iNumberOfBounces;

@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using Transitions;
 using System.Drawing;
+using System.Collections.Generic;
 
 namespace TestSample
 {
@@ -48,17 +49,32 @@ namespace TestSample
 
         private void cmdBounceMe_Click(object sender, EventArgs e)
         {
-            Transition.run(cmdBounceMe, "Top", ClientRectangle.Height - cmdBounceMe.Height, new TransitionType_Bounce(3, 1000));
+            Transition.run(cmdBounceMe, "Top", ClientRectangle.Height - cmdBounceMe.Height, new TransitionType_Flash(3, 1000));
         }
 
         private void cmdFlashMe_Click(object sender, EventArgs e)
         {
-            Transition.run(cmdFlashMe, "BackColor", Color.Pink, new TransitionType_Bounce(2, 300));
+            Transition.run(cmdFlashMe, "BackColor", Color.Pink, new TransitionType_Flash(2, 300));
         }
 
         private void cmdRipple_Click(object sender, EventArgs e)
         {
             ctrlRipple.ripple();
+        }
+
+        private void cmdDropAndBounce_Click(object sender, EventArgs e)
+        {
+            IList<TransitionElement> elements = new List<TransitionElement>();
+            elements.Add(new TransitionElement(40, 100, InterpolationMethod.Accleration));
+            elements.Add(new TransitionElement(65, 65, InterpolationMethod.Deceleration));
+            elements.Add(new TransitionElement(80, 100, InterpolationMethod.Accleration));
+            elements.Add(new TransitionElement(90, 90, InterpolationMethod.Deceleration));
+            elements.Add(new TransitionElement(100, 100, InterpolationMethod.Accleration));
+   
+            int iDestination = ClientRectangle.Height - cmdDropAndBounce.Height;
+            Transition.run(cmdDropAndBounce, "Top", iDestination, new TransitionType_UserDefined(elements, 2000));
+
+
         }
 
 

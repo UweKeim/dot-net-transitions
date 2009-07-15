@@ -81,6 +81,24 @@ namespace Transitions
         }
 
         /// <summary>
+        /// Converts a fraction representing linear time to a fraction representing
+        /// the distance traveled under a constant acceleration transition.
+        /// </summary>
+        public static double convertLinearToAcceleration(double dElapsed)
+        {
+            return dElapsed * dElapsed;
+        }
+
+        /// <summary>
+        /// Converts a fraction representing linear time to a fraction representing
+        /// the distance traveled under a constant deceleration transition.
+        /// </summary>
+        public static double convertLinearToDeceleration(double dElapsed)
+        {
+            return dElapsed * (2.0 - dElapsed);
+        }
+
+        /// <summary>
         /// Fires the event passed in in a thread-safe way. 
         /// </summary><remarks>
         /// This method loops through the targets of the event and invokes each in turn. If the

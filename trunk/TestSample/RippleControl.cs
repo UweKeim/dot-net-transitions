@@ -39,7 +39,7 @@ namespace TestSample
             // This means that we will be running 100 simulataneous transitions...
             foreach (CellInfo info in m_CellInfos)
             {
-                Transition.run(info.Control, "BackColor", Color.Pink, new TransitionType_Bounce(1, info.TransitionInterval));
+                Transition.run(info.Control, "BackColor", Color.Pink, new TransitionType_Flash(1, info.TransitionInterval));
             }
         }
         
