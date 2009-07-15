@@ -53,11 +53,13 @@
     <Compile Include="TransitionElement.cs" />
     <Compile Include="TransitionManager.cs" />
     <Compile Include="TransitionType_Acceleration.cs" />
+    <Compile Include="TransitionType_Bounce.cs" />
     <Compile Include="TransitionType_Flash.cs" />
     <Compile Include="TransitionType_CriticalDamping.cs" />
     <Compile Include="TransitionType_Deceleration.cs" />
     <Compile Include="TransitionType_EaseInEaseOut.cs" />
     <Compile Include="TransitionType_Linear.cs" />
+    <Compile Include="TransitionType_ThrowAndCatch.cs" />
     <Compile Include="TransitionType_UserDefined.cs" />
     <Compile Include="Utility.cs" />
   </ItemGroup>

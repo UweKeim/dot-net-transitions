@@ -41,10 +41,25 @@ namespace Transitions
         #region Public methods
 
         /// <summary>
+        /// Constructor.
+        /// </summary>
+        public TransitionType_UserDefined()
+        {
+        }
+
+        /// <summary>
         /// Constructor. You pass in the list of TransitionElements and the total time
         /// (in milliseconds) for the transition.
         /// </summary>
         public TransitionType_UserDefined(IList<TransitionElement> elements, int iTransitionTime)
+        {
+            setup(elements, iTransitionTime);
+        }
+
+        /// <summary>
+        /// Sets up the transitions. 
+        /// </summary>
+        public void setup(IList<TransitionElement> elements, int iTransitionTime)
         {
             m_Elements = elements;
             m_dTransitionTime = iTransitionTime;
