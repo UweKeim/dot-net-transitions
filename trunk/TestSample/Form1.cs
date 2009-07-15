@@ -49,7 +49,8 @@ namespace TestSample
 
         private void cmdBounceMe_Click(object sender, EventArgs e)
         {
-            Transition.run(cmdBounceMe, "Top", ClientRectangle.Height - cmdBounceMe.Height, new TransitionType_Flash(3, 1000));
+            int iDestination = ClientRectangle.Height - cmdBounceMe.Height;
+            Transition.run(cmdBounceMe, "Top", iDestination, new TransitionType_Bounce(1400));
         }
 
         private void cmdFlashMe_Click(object sender, EventArgs e)
@@ -75,6 +76,11 @@ namespace TestSample
             Transition.run(cmdDropAndBounce, "Top", iDestination, new TransitionType_UserDefined(elements, 2000));
 
 
+        }
+
+        private void cmdThrowAndCatch_Click(object sender, EventArgs e)
+        {
+            Transition.run(cmdThrowAndCatch, "Top", 0, new TransitionType_ThrowAndCatch(2500));
         }
 
 

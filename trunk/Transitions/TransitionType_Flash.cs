@@ -9,71 +9,37 @@ namespace Transitions
     /// up by reverting them to their initial values. You specify the number of bounces and
     /// the length of each bounce. 
     /// </summary>
-    public class TransitionType_Flash : ITransitionType
+    public class TransitionType_Flash : TransitionType_UserDefined
     {
         #region Public methods
 
         /// <summary>
-        /// You specify the number of bounces
+        /// You specify the number of bounces and the time taken for each bounce.
         /// </summary>
-        public TransitionType_Flash(int iNumberOfBounces, int iBounceTime)
+        public TransitionType_Flash(int iNumberOfFlashes, int iFlashTime)
         {
-            m_dBounceTime = iBounceTime / 2.0; // We store the number of half-bounces
-            m_dTransitionTime = iBounceTime * iNumberOfBounces;
+            // This class is derived from the user-defined transition type.
+            // Here we set up a custom "user-defined" transition for the 
+            // number of flashes passed in...
+            double dFlashInterval = 100.0 / iNumberOfFlashes;
+
+            // We set up the elements of the user-defined transition...
+            IList<TransitionElement> elements = new List<TransitionElement>();
+            for(int i=0; i<iNumberOfFlashes; ++i)
+            {
+                // Each flash consists of two elements: one going to the destination value, 
+                // and another going back again...
+                double dFlashStartTime = i * dFlashInterval;
+                double dFlashEndTime = dFlashStartTime + dFlashInterval;
+                double dFlashMidPoint = (dFlashStartTime + dFlashEndTime) / 2.0;
+                elements.Add(new TransitionElement(dFlashMidPoint, 100, InterpolationMethod.EaseInEaseOut));
+                elements.Add(new TransitionElement(dFlashEndTime, 0, InterpolationMethod.EaseInEaseOut));
+            }
+
+            base.setup(elements, iFlashTime * iNumberOfFlashes);
         }
 
         #endregion
 
-        #region ITransitionMethod Members
-
-        /// <summary>
-        /// Calculates the current position for the transition given the total
-        /// elapsed time.
-        /// </summary>
-        public void onTimer(int iTime, out double dPercentage, out bool bCompleted)
-        {
-            // The transition is broken into a number of half-bounces, i.e. each bounce
-            // consists of a 'there' and a 'back' movement. We need to work out how
-            // far we have traveled within each bounce, and the direction we are currently
-            // traveling in...
-
-            // We find the elapsed time within this bounce...
-            double dElapsedWithinBounce = iTime % m_dBounceTime;
-            double dElapsedFraction = dElapsedWithinBounce / m_dBounceTime;
-
-            // We convert this to a distance traveled with the ease-in-ease-out method...
-            double dDistance = Utility.convertLinearToEaseInEaseOut(dElapsedFraction);
-
-            // We need to work out which direction the bounce is in. To do this we 
-            // work out which bounce it is (0, 1, ...). The even bounces are "positive" bounces,
-            // and the odd ones are negative bounces...
-            dPercentage = dDistance;
-
-            int iBounceDirection = (int)Math.Floor(iTime / m_dBounceTime) % 2;
-            if (iBounceDirection == 1)
-            {
-                dPercentage = 1.0 - dDistance;
-            }
-
-            // Has the transition completed?
-            if (iTime >= m_dTransitionTime)
-            {
-                dPercentage = 0.0;
-                bCompleted = true;
-            }
-            else
-            {
-                bCompleted = false;
-            }
-        }
-
-        #endregion
-
-        #region Private data
-
-        private double m_dTransitionTime = 0.0;
-        private double m_dBounceTime = 0.0;
-
-        #endregion
     }
 }
