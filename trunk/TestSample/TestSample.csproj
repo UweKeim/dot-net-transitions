@@ -47,19 +47,19 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="PictureControl.cs">
+    <Compile Include="KittenPuppyControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PictureControl.Designer.cs">
-      <DependentUpon>PictureControl.cs</DependentUpon>
+    <Compile Include="KittenPuppyControl.Designer.cs">
+      <DependentUpon>KittenPuppyControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PictureControl.resx">
-      <DependentUpon>PictureControl.cs</DependentUpon>
+    <EmbeddedResource Include="KittenPuppyControl.resx">
+      <DependentUpon>KittenPuppyControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -95,6 +95,12 @@
       <Project>{95CDE461-0720-4C3B-B5E1-D188391FB7C0}</Project>
       <Name>Transitions</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\puppy.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\kitten.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

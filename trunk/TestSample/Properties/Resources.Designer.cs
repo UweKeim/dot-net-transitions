@@ -59,5 +59,19 @@ namespace TestSample.Properties {
                 resourceCulture = value;
             }
         }
+        
+        internal static System.Drawing.Bitmap kitten {
+            get {
+                object obj = ResourceManager.GetObject("kitten", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap puppy {
+            get {
+                object obj = ResourceManager.GetObject("puppy", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

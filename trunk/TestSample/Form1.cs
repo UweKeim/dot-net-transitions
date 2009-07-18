@@ -28,17 +28,6 @@ namespace TestSample
         #region Form event handlers
 
         /// <summary>
-        /// Called when the form loads.
-        /// </summary>
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            // We animate the Opacity property of the form, to fade-in the form.
-            // The Deceleration transition animates starting at a high rate of change
-            // and slowing down to zero by the end of the transition...
-            Transition.run(this, "Opacity", 1.0, new TransitionType_Deceleration(800));
-        }
-
-        /// <summary>
         /// Called when the "Swap" button is pressed.
         /// </summary>
         private void cmdSwap_Click(object sender, EventArgs e)
@@ -130,6 +119,15 @@ namespace TestSample
         }
 
         /// <summary>
+        /// Called when the "Swap Pictures" button is pressed.
+        /// </summary>
+        private void cmdSwapPictures_Click(object sender, EventArgs e)
+        {
+            // The transition is handled by the KittenPuppyControl...
+            ctrlPictures.transitionPictures();
+        }
+
+        /// <summary>
         /// Called when the "Text Transition" button is pressed.
         /// </summary>
         private void cmdTextTransition_Click(object sender, EventArgs e)
@@ -198,17 +196,45 @@ namespace TestSample
             Transition.run(this, "Width", iFormWidth, new TransitionType_EaseInEaseOut(1000));
         }
 
+        /// <summary>
+        /// Called when the "Drop and Bounce" button is pressed.
+        /// </summary>
         private void cmdDropAndBounce_Click(object sender, EventArgs e)
         {
+            // We animate the button to drop and bounce twice with bounces
+            // of diminishing heights. While it does this, it is moving to 
+            // the right, as if thrown to the right. When this animation has
+            // finished, the button moves back to its original position.
+
+            // The diminishing-bounce is not one of the built-in transition types,
+            // so we create it here as a user-defined transition type. You define 
+            // these as a collection of TransitionElements. These define how far the
+            // animated properties will have moved at various times, and how the 
+            // transition between different elements is to be done.
+
+            // So in the example below:
+            //  0% - 40%    The button acclerates to 100% distance (i.e. the bottom of the screen)
+            // 40% - 65%    The button bounces back (decelerating) to 70% distance.
+            // etc...
+
             IList<TransitionElement> elements = new List<TransitionElement>();
             elements.Add(new TransitionElement(40, 100, InterpolationMethod.Accleration));
-            elements.Add(new TransitionElement(65, 65, InterpolationMethod.Deceleration));
+            elements.Add(new TransitionElement(65, 70, InterpolationMethod.Deceleration));
             elements.Add(new TransitionElement(80, 100, InterpolationMethod.Accleration));
-            elements.Add(new TransitionElement(90, 90, InterpolationMethod.Deceleration));
+            elements.Add(new TransitionElement(90, 92, InterpolationMethod.Deceleration));
             elements.Add(new TransitionElement(100, 100, InterpolationMethod.Accleration));
 
             int iDestination = gbDropAndBounce.Height - cmdDropAndBounce.Height - 10;
             Transition.run(cmdDropAndBounce, "Top", iDestination, new TransitionType_UserDefined(elements, 2000));
+
+            // The transition above just animates the vertical bounce of the button, but not
+            // the left-to-right movement. This can't use the same transition, as otherwise the
+            // left-to-right movement would bounce back and forth.
+
+            // We run the left-to-right animation as a second, simultaneous transition. 
+            // In fact, we run a transition chain, with the animation of the button back
+            // to its starting position as the second item in the chain. The second 
+            // transition starts as soon as the first is complete...
 
             Transition t1 = new Transition(new TransitionType_Linear(2000));
             t1.add(cmdDropAndBounce, "Left", cmdDropAndBounce.Left + 400);
