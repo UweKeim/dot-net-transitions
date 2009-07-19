@@ -1,7 +1,5 @@
 ===Contents===
-[CodingWithTransitions#Adding_the_Transitions_library_to_your_project]
-
-[Adding the Transitions library to your project]
+[CodingWithTransitions#Adding_the_Transitions_library_to_your_project Adding the Transitions library to your project]
 
   * Creating a transition that works on multiple properties.
   * Creating a transition that works on a single property.
