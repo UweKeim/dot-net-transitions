@@ -12,7 +12,7 @@
   * Creating your own transition-type.
   * Property types supported by the Transitions library.
 
-===Adding the Transitions library to your project===
+=Adding the Transitions library to your project=
 
 
 ===Creating a transition that works on multiple properties===
