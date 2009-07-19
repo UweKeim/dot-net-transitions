@@ -1,5 +1,5 @@
 ===Contents===
-[ABC#Adding_the_Transitions_library_to_your_project]
+[Adding_the_Transitions_library_to_your_project]
 
 [Adding the Transitions library to your project]
 
