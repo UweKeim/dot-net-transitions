@@ -1,14 +1,21 @@
 ===Contents===
-[CodingWithTransitions#Adding_the_Transitions_library_to_your_project Adding the Transitions library to your project]
+[CodingWithTransitions#Adding_the_Transitions_library_to_your_project Adding the Transitions library to your project.]
 
-  * Creating a transition that works on multiple properties.
-  * Creating a transition that works on a single property.
-  * Creating chained transitions.
-  * Using the TransitionCompletedEvent.
-  * Using the predefined transition-types.
-  * Using the user-defined transition-type.
-  * Creating your own transition-type.
-  * Property types supported by the Transitions library.
+[CodingWithTransitions#Creating_a_transition_that_works_o_multiple_properties Creating a transition that works on multiple properties.]
+
+[CodingWithTransitions#Creating_a_transition_that_works_on_a_single_property Creating a transition that works on a single property.]
+
+[CodingWithTransitions#Creating_chained_transitions Creating chained transitions.]
+
+[CodingWithTransitions#Using_the_TransitionCompletedEvent Using the TransitionCompletedEvent.]
+
+[CodingWithTransitions#Using_the_predefined_transition-types Using the predefined transition-types.]
+
+[CodingWithTransitions#Using_the_user-defined_transition-type Using the user-defined transition-type.]
+
+[CodingWithTransitions#Creating_your_own_transition-type Creating your own transition-type.]
+
+[CodingWithTransitions#Property_types_supported_by_the_Transitions_library Property types supported by the Transitions library.]
 
 ===Adding the Transitions library to your project===
 
