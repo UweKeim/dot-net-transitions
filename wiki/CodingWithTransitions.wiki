@@ -14,7 +14,7 @@
 
 =Adding the Transitions library to your project=
 
-[Adding_the_Transitions_library_to_your_project]
+[ABC#Adding_the_Transitions_library_to_your_project]
 
 
 ===Creating a transition that works on multiple properties===
