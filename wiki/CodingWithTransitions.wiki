@@ -1,13 +1,9 @@
-#summary One-sentence summary of this page.
-
-= Introduction =
-
-Add your content here.
-
-
-= Details =
-
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+===Contents===
+* Creating a transition that works on multiple properties.
+* Creating a transition that works on a single property.
+* Creating chained transitions.
+* Using the TransitionCompletedEvent.
+* Using the predefined transition-types.
+* Using the user-defined transition-type.
+* Creating your own transition-type.
+* Property types supported by the Transitions library.
