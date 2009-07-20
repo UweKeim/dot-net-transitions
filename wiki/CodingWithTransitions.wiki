@@ -12,13 +12,42 @@
   * [CodingWithTransitions#Property_types_supported_by_the_Transitions_library Property types supported by the Transitions library.]
 
 ===Adding the Transitions library to your project===
-To add Transitions to your project you just need to add a reference to the Transitions.dll. This dll can be found in the TransitionsSample and TransitionsLibrary downloads.
+To add Transitions to your project you just need to add a reference to the Transitions.dll. This dll can be found in the !TransitionsSample and !TransitionsLibrary downloads.
 
 
 ===Creating a transition that works on multiple properties===
+You create a transition in three stages:
+1. Create a new Transition object.
+2. Add the properties to it that you want to animate.
+3. Run the transition.
+
+Here's an example:
+{{{
+Transition t = new Transition(new TransitionType_EaseInEaseOut(2000));
+t.add(pictureBox1, "Left", 0);
+t.add(pictureBox2, "Left", -300);
+t.run();
+}}}
+
+When you create the transition you specify which transition-type you will be using and any parameters needed by it - in particular the time that the transition will take, expressed in milliseconds. The transition-type defines which 'animation-curve' will be used. See [CodingWithTransitions#Using_the_predefined_transition-types below] for more details about the different transition types.
+
+After creating the transition, you tell it which properties you want to animate. As in the example above, these can be properties on more than one object. Equally, you could animate multiple properties on the same object. You specify the object, the name of the property and the destination value.
+
+When you run the transition, the Transitions library will animate the specified properties from their current values to the specified destination values using the transition-type you specified. The animation is done asynchronously on a background thread, so your main thread of code carries on running immediately after the run() method is called.
 
 
 ===Creating a transition that works on a single property===
+The Transitions class has a static run() method that lets you animate a single property. You call it like this:
+{{{
+Transition.run(this, "BackColor", Color.Red, new TransitionType_Linear(1000));
+}}}
+
+This is just a convenient shorthand for:
+{{{
+Transition t = new Transition(new TransitionType_Linear(1000));
+t.add(this, "BackColor", Color.Red);
+t.run();
+}}}
 
 
 ===Creating chained transitions===
