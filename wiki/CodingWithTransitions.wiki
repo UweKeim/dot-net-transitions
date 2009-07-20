@@ -26,6 +26,7 @@ t.add(pictureBox1, "Left", 0);
 t.add(pictureBox2, "Left", -300);
 t.run();
 }}}
+This transition moves pictureBox1 to X=0 and pictureBox2 to X=-300. (If pictureBox1.Left was -300 before the transition, and the width of the picture-boxes is 300, this will slide picturebox2 off the screen while simultaneously sliding picturebox1 onto the screen.)
 
 When you create the transition you specify which transition-type you will be using and any parameters needed by it - in particular the time that the transition will take, expressed in milliseconds. The transition-type defines which 'animation-curve' will be used. See [CodingWithTransitions#Using_the_predefined_transition-types below] for more details about the different transition types.
 
