@@ -12,6 +12,7 @@
   * [CodingWithTransitions#Property_types_supported_by_the_Transitions_library Property types supported by the Transitions library.]
 
 ===Adding the Transitions library to your project===
+To add Transitions to your project you just need to add a reference to the Transitions.dll. This dll can be found in the TransitionsSample and TransitionsLibrary downloads.
 
 
 ===Creating a transition that works on multiple properties===
