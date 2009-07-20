@@ -15,9 +15,9 @@ To add Transitions to your project you just need to add a reference to the Trans
 
 ===Creating a transition that works on multiple properties===
 You create a transition in three stages:
-1. Create a new Transition object.
-2. Add the properties to it that you want to animate.
-3. Run the transition.
+  # Create a new Transition object.
+  # Add the properties to it that you want to animate.
+  # Run the transition.
 
 Here's an example:
 {{{
