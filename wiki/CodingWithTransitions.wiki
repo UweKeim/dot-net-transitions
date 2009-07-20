@@ -51,12 +51,41 @@ t.run();
 
 
 ===Creating chained transitions===
+You may want to create animated transitions that chain together. For example, you might want to move an object down the screen and then across. To do this, you create multiple individual transitions and chain them together like this:
+{{{
+Transition t1 = new Transition(new TransitionType_Linear(1000));
+t1.add(pictureBox1, "Top", 500);
+
+Transition t2 = new Transition(new TransitionType_Linear(1000));
+t2.add(pictureBox1, "Left", 400);
+
+Transition.runChain(t1, t2);
+}}}
+This animates the picture-box to Y=500 and when that has completed it animates it to X=400. The runChain() method can take an arbitrary number of transitions, or can take an array of Transition objects.
 
 
-===Using the TransitionCompletedEvent===
+===Using the !TransitionCompletedEvent===
+Transitions are run asynchronously. If you need to know when a transition has completed you can register with the !TransitionCompletedEvent. This is raised from the Transition's background thread when the transition is completed. If your event-handler is on a UI object such as a form, the event will automatically be marshaled to the UI thread.
 
 
 ===Using the predefined transition-types===
+When you create a transition you specify the transition-type. These specify the animation-curve  - and other parameters - needed by the animation. There are a number of built-in transition types, described below.
+
+*TransitionType_Linear* is a linear animation with objects moving at a constant rate throughout the transition.
+
+*TransitionType_Acceleration* starts the transition at zero velocity and builds up at a constant rate of acceleration to be at full-speed by the end of the transition.
+
+*TransitionType_Deceleration* starts the transition at full-speed and decelerates at a constant rate to be at zero velocity by the end of the transition.
+
+*TransitionType_CriticalDamping* is a declerating transition, using an exponentially decaying velocity. It is good (for example) for animating properties such as needles on dials.
+
+*TransitionType_EaseInEaseOut* starts at zero velocity and accelerates until halfway through the transition, then decelerates back to zero velocity by the end of the transition.
+
+*TransitionType_Bounce* accelerates to the destination value by halfway through the transition and then decelerates back to the original value by the end. This is similar to acclerating downwards with gravity and then bouncing back against gravity.
+
+*TransitionType_ThrowAndCatch* is the counterpart of the Bounce transition above. It decelerates to the destination value by halfway through the transition and then acclerates back to the original value by the end.
+
+*TransitionType_Flash* lets you specify a number of flashes and the time for each flash. Each flash animates the properties to their destination value and back again using an ease-in-ease-out transition.
 
 
 ===Using the user-defined transition-type===
