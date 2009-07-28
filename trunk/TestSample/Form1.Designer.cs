@@ -42,13 +42,13 @@
             this.cmdSwap = new System.Windows.Forms.Button();
             this.ctrlChangeFormColor = new System.Windows.Forms.Button();
             this.gbRipple = new System.Windows.Forms.GroupBox();
-            this.ctrlRipple = new TestSample.RippleControl();
             this.gbFlash = new System.Windows.Forms.GroupBox();
             this.gbDropAndBounce = new System.Windows.Forms.GroupBox();
             this.cmdMore = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.cmdSwapPictures = new System.Windows.Forms.Button();
             this.ctrlPictures = new TestSample.KittenPuppyControl();
+            this.ctrlRipple = new TestSample.RippleControl();
             this.groupBox1.SuspendLayout();
             this.gbBounce.SuspendLayout();
             this.gbThrowAndCatch.SuspendLayout();
@@ -211,13 +211,6 @@
             this.gbRipple.TabStop = false;
             this.gbRipple.Text = "Ripple";
             // 
-            // ctrlRipple
-            // 
-            this.ctrlRipple.Location = new System.Drawing.Point(6, 62);
-            this.ctrlRipple.Name = "ctrlRipple";
-            this.ctrlRipple.Size = new System.Drawing.Size(193, 140);
-            this.ctrlRipple.TabIndex = 8;
-            // 
             // gbFlash
             // 
             this.gbFlash.Controls.Add(this.cmdFlashMe);
@@ -276,6 +269,13 @@
             this.ctrlPictures.Name = "ctrlPictures";
             this.ctrlPictures.Size = new System.Drawing.Size(103, 90);
             this.ctrlPictures.TabIndex = 0;
+            // 
+            // ctrlRipple
+            // 
+            this.ctrlRipple.Location = new System.Drawing.Point(6, 62);
+            this.ctrlRipple.Name = "ctrlRipple";
+            this.ctrlRipple.Size = new System.Drawing.Size(193, 140);
+            this.ctrlRipple.TabIndex = 8;
             // 
             // Form1
             // 
