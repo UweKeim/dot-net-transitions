@@ -266,17 +266,46 @@ namespace Transitions
 		{
             try
             {
+                // If the target is a control that has been disposed then we don't 
+                // try to update its proeprties. This can happen if the control is
+                // on a form that has been closed while the transition is running...
+                if (isDisposed(args.target) == true)
+                {
+                    return;
+                }
+
                 ISynchronizeInvoke invokeTarget = args.target as ISynchronizeInvoke;
                 if (invokeTarget != null && invokeTarget.InvokeRequired)
                 {
-                    // We need to invoke the method on the GUI thread.
-                    // Note: We change the property synchronously with Invoke rather than
-                    //       asynchronously with BeginInvoke as the transition can generate
-                    //       a large number of changes, and these can "pile up" and cause
-                    //       problems. It is better to slow the transition down to the speed
-                    //       at which it can realistically be rendered. (The transition will 
-                    //       not actually slow down, but the frame-rate may decrease.)
-                    invokeTarget.Invoke(new EventHandler<PropertyUpdateArgs>(setProperty), new object[] { sender, args });
+                    // There is some history behind the next two lines, which is worth
+                    // going through to understand why they are the way they are.
+
+                    // Initially we used BeginInvoke without the subsequent WaitOne for
+                    // the result. A transition could involve a large number of updates
+                    // to a property, and as this call was asynchronous it would send a 
+                    // large number of updates to the UI thread. These would queue up at
+                    // the GUI thread and mean that the UI could be some way behind where
+                    // the transition was.
+
+                    // The line was then changed to the blocking Invoke call instead. This 
+                    // meant that the transition only proceded at the pace that the GUI 
+                    // could process it, and the UI was not overloaded with "old" updates.
+
+                    // However, in some circumstances Invoke could block and lock up the
+                    // Transitions background thread. In particular, this can happen if the
+                    // control that we are trying to update is in the process of being 
+                    // disposed - for example, it is on a form that is being closed. See
+                    // here for details: 
+                    // http://social.msdn.microsoft.com/Forums/en-US/winforms/thread/7d2c941a-0016-431a-abba-67c5d5dac6a5
+                    
+                    // To solve this, we use a combination of the two earlier approaches. 
+                    // We use BeginInvoke as this does not block and lock up, even if the
+                    // underlying object is being disposed. But we do want to wait to give
+                    // the UI a chance to process the update. So what we do is to do the
+                    // asynchronous BeginInvoke, but then wait (with a short timeout) for
+                    // it to complete.
+                    IAsyncResult asyncResult = invokeTarget.BeginInvoke(new EventHandler<PropertyUpdateArgs>(setProperty), new object[] { sender, args });
+                    asyncResult.AsyncWaitHandle.WaitOne(50);
                 }
                 else
                 {
@@ -290,6 +319,31 @@ namespace Transitions
                 // bounds exceptions when setting properties.
             }
 		}
+
+        /// <summary>
+        /// Returns true if the object passed in is a Control and is disposed
+        /// or in the process of disposing. (If this is the case, we don't want
+        /// to make any changes to its properties.)
+        /// </summary>
+        private bool isDisposed(object target)
+        {
+            // Is the object passed in a Control?
+            Control controlTarget = target as Control;
+            if (controlTarget == null)
+            {
+                return false;
+            }
+
+            // Is it disposed or disposing?
+            if (controlTarget.IsDisposed == true || controlTarget.Disposing)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
 		#endregion
 
