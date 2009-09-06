@@ -267,7 +267,7 @@ namespace Transitions
             try
             {
                 // If the target is a control that has been disposed then we don't 
-                // try to update its proeprties. This can happen if the control is
+                // try to update its properties. This can happen if the control is
                 // on a form that has been closed while the transition is running...
                 if (isDisposed(args.target) == true)
                 {
@@ -363,7 +363,7 @@ namespace Transitions
 		#region Private static data
 
 		// A map of Type info to IManagedType objects. These are all the types that we
-        // know how to perform transactions on...
+        // know how to perform transitions on...
         private static IDictionary<Type, IManagedType> m_mapManagedTypes = new Dictionary<Type, IManagedType>();
 
         #endregion

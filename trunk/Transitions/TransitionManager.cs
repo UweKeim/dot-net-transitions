@@ -7,13 +7,13 @@ namespace Transitions
 {
     /// <summary>
     /// This class is responsible for running transitions. It holds the timer that
-    /// triggers transaction animation. 
+    /// triggers transition animation. 
     /// </summary><remarks>
     /// This class is a singleton.
     /// 
-    /// We manage the transaction timer here so that we can have a single timer
-    /// across all transactions. If each transaction has its own timer, this creates
-    /// one thread for each transaction, and this can lead to too many threads in
+    /// We manage the transition timer here so that we can have a single timer
+    /// across all transitions. If each transition has its own timer, this creates
+    /// one thread for each transition, and this can lead to too many threads in
     /// an application.
     /// 
     /// This class essentially just manages the timer for the transitions. It calls 
