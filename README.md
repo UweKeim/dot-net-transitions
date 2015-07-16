@@ -12,9 +12,9 @@ The Transitions library is built with Visual Studio 2008 but targets version 2 o
 
 ## Downloads
 
-- [**Download compiled library 1.2 (DLL)**](https://github.com/UweKeim/dot-net-transitions/blob/master/Downloads/TransitionsLibrary_1_2.zip)
-- [Download Sample 1.2](https://github.com/UweKeim/dot-net-transitions/blob/master/Downloads/TransitionsSample_1_2.zip)
-- [Download code 1.2](https://github.com/UweKeim/dot-net-transitions/blob/master/Downloads/TransitionsCode_1_2.zip)
+- [**Download compiled library 1.2 (DLL)**](https://github.com/UweKeim/dot-net-transitions/blob/master/Downloads/TransitionsLibrary_1_2.zip?raw=true)
+- [Download Sample 1.2](https://github.com/UweKeim/dot-net-transitions/blob/master/Downloads/TransitionsSample_1_2.zip?raw=true)
+- [Download code 1.2](https://github.com/UweKeim/dot-net-transitions/blob/master/Downloads/TransitionsCode_1_2.zip?raw=true)
 
 ## Getting started
 
