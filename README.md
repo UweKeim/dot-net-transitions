@@ -52,6 +52,6 @@ Transitions is currently at version 1.2. See the VersionHistory page for details
 
 Thanks to Maxim Gready for writing the critical-damping transition-type.
 
-Copyright (c) 2009 Richard S. Shepherd.
+&copy; 2009 Richard S. Shepherd.
 
 2015-07-16, Uwe Keim: I've copied this repository from [Google Code](https://code.google.com/p/dot-net-transitions/) to save it from disappearing when Google Code shuts down.
