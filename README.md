@@ -2,6 +2,8 @@
 
 A library for animated UI transitions for .NET.
 
+[![Build state](https://travis-ci.org/UweKeim/dot-net-transitions.svg?branch=master)](https://travis-ci.org/UweKeim/dot-net-transitions "Travis CI build status")
+
 I've copied this repository from [Google Code](https://code.google.com/p/dot-net-transitions/) to save it from disappearing when Google Code shuts down.
 
 ## Overview
@@ -12,7 +14,8 @@ The Transitions library is built with Visual Studio 2008 but targets version 2 o
 
 ## Downloads
 
-- [**Download compiled library 1.2 (DLL)**](https://github.com/UweKeim/dot-net-transitions/blob/master/Downloads/TransitionsLibrary_1_2.zip?raw=true)
+- [**Get it on NuGet**](https://www.nuget.org/packages/dot-net-transitions/)
+- [Download latest DLL](https://github.com/UweKeim/dot-net-transitions/blob/master/Bin/Transitions/Transitions.dll?raw=true)
 - [Download Sample 1.2](https://github.com/UweKeim/dot-net-transitions/blob/master/Downloads/TransitionsSample_1_2.zip?raw=true)
 - [Download code 1.2](https://github.com/UweKeim/dot-net-transitions/blob/master/Downloads/TransitionsCode_1_2.zip?raw=true)
 
