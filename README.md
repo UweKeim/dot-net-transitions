@@ -4,8 +4,6 @@ A library for animated UI transitions for .NET.
 
 [![Build state](https://travis-ci.org/UweKeim/dot-net-transitions.svg?branch=master)](https://travis-ci.org/UweKeim/dot-net-transitions "Travis CI build status")
 
-I've copied this repository from [Google Code](https://code.google.com/p/dot-net-transitions/) to save it from disappearing when Google Code shuts down.
-
 ## Overview
 
 The Transitions library lets you create animated transitions of any properties of user-interface elements for .NET. It provides an easy way to perform UI animations in .NET in a similar way to the Core Animation library for Apple and the iPhone.
@@ -53,3 +51,7 @@ Transitions is currently at version 1.2. See the VersionHistory page for details
 ## Acknowledgements
 
 Thanks to Maxim Gready for writing the critical-damping transition-type.
+
+Copyright (c) 2009 Richard S. Shepherd.
+
+2015-07-16, Uwe Keim: I've copied this repository from [Google Code](https://code.google.com/p/dot-net-transitions/) to save it from disappearing when Google Code shuts down.
