@@ -10,6 +10,12 @@ The Transitions library lets you create animated transitions of any properties o
 
 The Transitions library is built with Visual Studio 2008 but targets version 2 of the .NET runtime, so it can be used with projects built with VS2005.
 
+## Downloads
+
+- [**Download compiled library 1.2 (DLL)**](https://github.com/UweKeim/dot-net-transitions/blob/master/Downloads/TransitionsLibrary_1_2.zip)
+- [Download Sample 1.2](https://github.com/UweKeim/dot-net-transitions/blob/master/Downloads/TransitionsSample_1_2.zip)
+- [Download code 1.2](https://github.com/UweKeim/dot-net-transitions/blob/master/Downloads/TransitionsCode_1_2.zip)
+
 ## Getting started
 
 You can animate a single property of an object with a single line of code like this:
