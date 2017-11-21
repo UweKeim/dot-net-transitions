@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>dot-net-transitions</id>
+		<projectUrl>https://github.com/UweKeim/dot-net-transitions</projectUrl>
+        <version>1.2.2.0</version>
+        <title>dot-net-transitions</title>
+        <authors>Uwe Keim</authors>
+        <owners />
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>A library for animated UI transitions for .NET.</description>
+        <summary>A library for animated UI transitions for .NET.</summary>
+		<iconUrl>http://i.imgur.com/l5hbo5s.png</iconUrl>
+        <language>en-US</language>
+        <tags>winforms, transition, windows forms, transitions</tags>
+
+		<frameworkAssemblies>
+			<frameworkAssembly assemblyName="System" targetFramework="net40" />
+		</frameworkAssemblies>
+	</metadata>
+    <files>
+        <file src="..\Bin\Transitions\Transitions.dll" target="lib\net20\Transitions.dll" />
+        <file src="..\Bin\Transitions\Transitions.pdb" target="lib\net20\Transitions.pdb" />
+    </files>
+</package>
